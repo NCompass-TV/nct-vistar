@@ -1,25 +1,27 @@
-import axios from 'axios';
-import { environment } from '../environments/environment'; 
-import { AssetRequest } from '../model/AssetRequest';
+/**
+ * Title: GetAd Service
+ * Author: Earl Vhin Gabuat (earlgabuat@gmail.com)
+*/
 
-export class GetAd {
-    asset_request: AssetRequest;
-    prod: boolean;
+import axios from "axios";
+import { AdResponse } from "../schema/AdResponse";
+import { AdRequest } from "../models/AdRequest";
+import { environment } from "../environments/environment";
 
-    constructor(AssetRequest: AssetRequest, prod?: boolean) {
-        this.asset_request = AssetRequest;
-        this.prod = prod || true;
-    }
+/**
+ * @param assetRequest: Asset Info to be requested
+ * @returns: Promise of AdResponse
+*/
+ export async function GetAd(AdRequest: AdRequest): Promise<AdResponse> {
+    try {
+        const res = await axios.post(
+            `${environment.base_uri}${environment.get_ad}`,
+            AdRequest
+        )
 
-    async invoke() {
-        try {
-            return await axios.post(
-                this.prod ? `${environment.base_uri_prod}${environment.get_ad}` : `${environment.base_uri_sandbox}${environment.get_ad}`,
-                this.asset_request
-            )
-        } catch(err) {
-            console.log("GetAd:", err);
-            return err;
-        }
+        return res.data;
+    } catch(err) {
+        console.log("GetAd:", err);
+        return err;
     }
 }

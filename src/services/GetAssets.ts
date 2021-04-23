@@ -1,25 +1,27 @@
-import axios from 'axios';
-import { environment } from '../environments/environment'; 
-import { AssetRequest } from '../model/AssetRequest';
+/**
+ * Title: GetAssets Service
+ * Author: Earl Vhin Gabuat (earlgabuat@gmail.com)
+*/
 
-export class GetAssets {
-    asset_request: AssetRequest;
-    prod: boolean;
+import axios from "axios";
+import { environment } from "../environments/environment";
+import { AdRequest } from "../models/AdRequest";
+import { AssetResponse } from "../schema/AssetResponse";
 
-    constructor(AssetRequest: AssetRequest, prod?: boolean) {
-        this.asset_request = AssetRequest;
-        this.prod = prod || true;
-    }
+/**
+ * @param assetRequest: Asset Info to be requested
+ * @returns 
+ */
+ export async function GetAssets(Adrequest: AdRequest): Promise<AssetResponse> {
+    try {
+        const res = await axios.post(
+            `${environment.base_uri}${environment.get_assets}`,
+            Adrequest
+        )
 
-    async invoke() {
-        try {
-            return await axios.post(
-                this.prod ? `${environment.base_uri_prod}${environment.get_assets}` : `${environment.base_uri_sandbox}${environment.get_assets}`,
-                this.asset_request
-            )
-        } catch(err) {
-            console.log("GetAssets:", err);
-            return err;
-        }
+        return res.data;
+    } catch(err) {
+        console.log("GetAssets:", err);
+        return err;
     }
 }

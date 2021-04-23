@@ -1,11 +1,16 @@
-import { FILETYPE } from "../constants/Filetype";
+/**
+ * Title: Asset Info Model
+ * Author: Earl Vhin Gabuat (earlgabuat@gmail.com)
+*/
 
-export class AssetInfo {
+ import { FILETYPE } from "../constants/Filetype";
+
+ export class AssetInfo {
     id: string;
-    supported_media: FILETYPE[];
-    allow_audio: boolean;
     width: number;
     height: number;
+    allow_audio: boolean;
+    supported_media: FILETYPE[];
 
     constructor(
         id: string,
