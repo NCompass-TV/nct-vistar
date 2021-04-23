@@ -1,3 +1,8 @@
+/**
+ * Title: Asset Response Schema
+ * Author: Earl Vhin Gabuat (earlgabuat@gmail.com)
+*/
+
 export type AssetResponse = {
     asset: Asset[];
 }

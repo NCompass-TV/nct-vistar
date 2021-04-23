@@ -1,3 +1,8 @@
+/**
+ * Title: Ad Response Schema
+ * Author: Earl Vhin Gabuat (earlgabuat@gmail.com)
+*/
+
 export type AdResponse = {
     advertisement: Advertisement[];
 }

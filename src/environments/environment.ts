@@ -1,3 +1,8 @@
+/**
+ * Title: Environment
+ * Author: Earl Vhin Gabuat (earlgabuat@gmail.com)
+*/
+
 export const environment = {
     base_uri: 'https://sandbox-api.vistarmedia.com/api/v1/',
     // base_uri_prod: 'https://api.vistarmedia.com/api/v1/',
